@@ -1,0 +1,63 @@
+{% extends 'polls/base.html' %}
+
+{% block polls_content %} <!-- Block for the html logic -->
+<div class="logout_sec">
+    <a class="nav-link" href="{% url 'polls:logout_user' %}">LOGOUT</a>
+</div>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %} <!-- we can use this simbol (double bracket) to introduce a variable from the python file-->
+
+<div class="background" style="text-align: center;">
+    <h1>Benutzer löschen</h1>
+    <br>
+    
+    <form action="{% url 'polls:delete_user'%}" method="post">
+        {% csrf_token %}
+
+        <div class="grid-workshop">
+            <div style="font-weight: bold;">Name</div>
+            <div style="font-weight: bold;">Workshops</div>
+            <div style="font-weight: bold;">Auswahl</div>
+        
+            {% for user in Users %}
+            
+                <div>
+                    <label for="{{user.username}}">{{user.username}}</label>
+                </div>
+                
+                <div>
+                    {% for workshop in WorkshopList %}
+                        {% if user.username ==  workshop.user_name %}
+                            <label>{{workshop.workshop_name}} ({{workshop.workshop_date}})</label><br/>
+                        {% endif %}
+                    {% endfor %}
+                </div> 
+
+                <div>
+                    <input type="radio" name="user_id" id="{{user.username}}" value="{{user.username}}" />
+                </div>
+            {% endfor %}
+        </div>
+        <br/>
+
+        <div id = "show_pass_delete_user" >
+            <label for="password" style="font-size: 20px; margin-left: -250px;">Bitte geben Sie das Kennwort dieses Benutzers ein, um ihn zu löschen</label><br />
+            <input type="password" class="textarea_register" name="password" id="password_text" placeholder="Kennwort eingeben"><br>
+        </div>
+        
+        <br>
+        <input id="delete_button_user" type="submit" name="delete_user" value="Benutzer Löschen" class="button_red"/>
+        <a class="button_brown" href="{% url 'polls:login_user' %}" role="button">Anmelden</a>
+        <br /><br />
+
+        <div class="form-group">
+            {% for message in messages %}
+            <div class="alert alert-danger" role="alert">
+                {{message}}
+            </div>
+            {% endfor %}
+        </div>
+    </form>
+</div>
+
+{% endblock %}

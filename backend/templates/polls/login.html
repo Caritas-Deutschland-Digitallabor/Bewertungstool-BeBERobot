@@ -1,0 +1,44 @@
+{% extends 'polls/base.html' %}
+
+{% block polls_content %} <!-- Block for the html logic -->
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<div class="background" style="text-align: center;">
+    <form action="{% url 'polls:login_user'%}" method="post">
+        {% csrf_token %}
+
+        <h1>ANMELDEN</h1>
+        <hr />
+
+        <div class="grid-registration">
+            <div>
+                <label for="username" style="font-size: 20px;">Benutzername</label> <br />
+                <input type="textarea" class="textarea_register" name="username" id="username" placeholder="Benutzernamen eingeben">
+            </div>
+
+            <div>
+                <label for="password" style="font-size: 20px;">Kennwort</label><br />
+                <input type="password" class="textarea_register" name="password" id="password" placeholder="Kennwort eingeben"><br>
+                <a href="{% url 'polls:password_reset' %}" style="font-size: 18px;">Passwort vergessen?</a>
+            </div>
+        </div>
+        
+        <br /><br />
+        <a class="button_brown" href="{% url 'polls:register' %}" role="button">Registrieren</a>
+        <input id="anmelden_button" type="submit" value="Anmelden" class="button"/>
+        <br /><br />
+        <a class="button_red" href="{% url 'polls:show_delete_user' %}" role="button">Benutzer löschen</a>
+        <br />
+
+        <div class="form-group">
+            {% for message in messages %}
+            <div class="alert alert-danger" role="alert">
+                {{message}}
+            </div>
+            {% endfor %}
+        </div>
+    </form>
+</div>
+
+{% endblock %}

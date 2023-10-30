@@ -1,0 +1,18 @@
+{% extends 'polls/base.html' %}
+
+
+{% block content %}
+
+<div class="background" style="text-align: center;">
+	<!--Password reset sent-->
+	<div class="container p-5">
+  	<h1>Bestätigte E-Mail</h1>
+		<hr>
+		<p style="text-align: left; font-size: 20px;"> Vielen Dank für Ihre E-Mail-Bestätigung. Jetzt können Sie sich in Ihr Konto einloggen.</p>
+        <br>                
+        <a class="button" href="{% url 'polls:register' %}" role="button">Register</a>
+  </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,173 @@
+{% extends 'polls/base.html' %}
+
+{% block polls_content %} <!-- Block for the html logic -->
+<div class="logout_sec">
+    <a class="nav-link" href="{% url 'polls:logout_user' %}">LOGOUT</a>
+</div>
+<div class="logout_mess">
+    Klicken Sie hier, um sich von der Sitzung abzumelden, alle eingegebenen Daten werden gespeichert
+</div>
+<br/>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %} <!-- we can use this simbol (double bracket) to introduce a variable from the python file-->
+
+<div class="background">
+    <h1 style="text-align: center;">Fragebogen (übersprungene Fragen)</h1>
+    <br/>
+    <div class="grid_question">
+
+        <div class="grid-item_question question_item1">
+            <!--Go back button-->
+            <!-- We don't allow for going back, but we leave the division to keep the template like in question.html-->
+        </div>
+
+        <div class="grid-item_question question_item2">
+            {% if category == "economy" %}
+                {% if mouse_over.economy == "" %}
+                    <h1>{{question.question}}</h1> 
+                {% else %}
+                    <h1 title="{{mouse_over.economy}}">{{question.question}} &#9432;</h1>
+                {% endif %}
+            {% elif category == "care" %}
+                 {% if mouse_over.care == "" %} 
+                    <h1>{{question.question}}</h1>
+                 {% else %} 
+                    <h1 title="{{mouse_over.care}}">{{question.question}} &#9432;</h1>
+                 {% endif %} 
+            {% elif category == "technology" %}
+                 {% if mouse_over.technology == "" %} 
+                    <h1>{{question.question}}</h1> 
+                 {% else %} 
+                    <h1 title="{{mouse_over.technology}}">{{question.question}} &#9432;</h1>
+                 {% endif %} 
+            {% elif category == "embedding" %}
+                 {% if mouse_over.embedding == "" %} 
+                    <h1>{{question.question}}</h1> 
+                 {% else %} 
+                    <h1 title="{{mouse_over.embedding}}">{{question.question}} &#9432;</h1>
+                 {% endif %} 
+            {% elif category == "law" %}
+                 {% if mouse_over.law == "" %} 
+                    <h1>{{question.question}}</h1> 
+                 {% else %} 
+                    <h1 title="{{mouse_over.law}}">{{question.question}} &#9432;</h1>
+                 {% endif %} 
+            {% else %}
+                 {% if mouse_over.ethics == "" %} 
+                    <h1>{{question.question}}</h1> 
+                 {% else %} 
+                    <h1 title="{{mouse_over.ethics}}">{{question.question}} &#9432;</h1>
+                 {% endif %} 
+            {% endif %}        
+          
+        </div> 
+
+        <div class="grid-item_question question_item3">
+            <!--Submit button to get to the next slide-->
+            <input id="next_button" type="submit" value="&#x226B" class="button" form="question_skip_form" title="Weiter" style="font-size: 30px; padding: 10px 20px; margin: 20px 0 0 0;"/> <!--value="Weiter"-->
+        </div>
+
+        <!--<div class="grid-item_question question_item3">
+            Skip question button
+            <form action="{% url 'polls:skip_skip_ques' %}" method="post" > 
+                {% csrf_token %}
+                <input id="skip_button" type="submit" value="Frage überspringen" style="float: right; margin: 20px 0 0 0;"/>
+            </form>
+        </div>-->
+
+        <div class="grid-item_question question_item4">
+
+            <form action="{% url 'polls:next_skip_ques' category question_id %}" method="post" id="question_skip_form"> 
+                {% csrf_token %}
+                <div class="div_question_section">
+                    <!--Radio buttons with 3 options (ja, ja aber, nein) for the last two we also need a comments section-->
+                    {% if selected_option == "Ja" %}
+                    <input type="radio" name="choice" id="choice_ja" value="Ja" checked/>
+                    {% else %} 
+                    <input type="radio" name="choice" id="choice_ja" value="Ja" />
+                    {% endif %}
+                    <label id="label_ja" ><span class="circle_green"></span>Wir haben keinen Diskussionsbedarf</label><br /><br />
+
+                    {% if selected_option == "Ja_aber" %}
+                    <input type="radio" name="choice" id="choice_ja_aber" value="Ja_aber" checked/>
+                    {% else %} 
+                    <input type="radio" name="choice" id="choice_ja_aber" value="Ja_aber" />
+                    {% endif %}
+                    <label id="label_ja_aber"><span class="circle_yellow"></span>In Bezug auf die Fragestellung geben wir folgenden Hinweis:</label><br />
+                    <textarea id="text_jaaber" name="text_jaaber" placeholder="[Bitte erläutern/ begründen Sie hier. Ihre Daten werden automatisch gespeichert]" style="height:100px; width: 70%;" class="textarea_question">{{comment_jaaber}}</textarea><br>
+
+                    {% if selected_option == "nein" %}
+                    <input type="radio" name="choice" id="choice_nein" value="nein" checked/>
+                    {% else %} 
+                    <input type="radio" name="choice" id="choice_nein" value="nein" />
+                    {% endif %}
+                    <label id="label_nein" style="width: 95%;"><span class="circle_red"></span>In Bezug auf die Fragestellung ist der Einsatz robotischer Systeme nicht möglich, weil…</label><br />
+                    <textarea id="text_nein" name="text_nein" placeholder="[Bitte erläutern/ begründen Sie hier. Ihre Daten werden automatisch gespeichert]" style="height:100px; width: 70%;" class="textarea_question">{{comment_nein}}</textarea><br>
+                    <div id= "nein_section">
+                        <label> Folgende Bedingungen müssten für einen Einsatz erfüllt sein… (optional)</label><br>
+                        <textarea id="text_unless" name="text_unless" placeholder="[Bitte erläutern/ begründen Sie hier. Ihre Daten werden automatisch gespeichert]" style="height:100px; width: 70%;" class="textarea_question">{{comment_unless}}</textarea><br><br>
+                    </div>
+                </div>
+                <br/>
+                <!-- Button to clear all the selections-->
+                <button id="clear_button" type="button" title="Nur die ausgewählten Elemente dieser Antwort löschen" class="button_red">Antwort löschen </button> 
+            </form>
+            <form action="{% url 'polls:skip_skip_ques' %}" method="post" > 
+                {% csrf_token %}
+                <input id="skip_button" type="submit" value="Frage überspringen" style="float: right; margin-top: -60px;" class="button_brown"/> <!--value="&#x226B" style="margin: 20px 0 0 0;"-->
+            </form>
+        </div>
+
+        <div class="grid-item_question question_item5">
+            <!-- <label>&#x1F4C2; Alle Fragen</label> <br/> -->
+            <label>&#x1F4C2; Unbeantwortet</label> <br/> <!--&#x274D-->
+            <label>&#x2705; Beantwortet</label> 
+        </div>
+
+        <div class="grid-item_question question_item6">
+            <!-- <label class="label_right">{{n_ques_total}}</label> <br/> -->
+            <label class="label_right">{{n_ques_left}}</label><br/>
+            <label class="label_right">{{n_ques_answered}}</label>
+        </div>
+
+        <div class="grid-item_question question_item7">
+            <p> <strong>Kategorien</strong></p>
+            <!-- <input type="radio" name="category_ques" id="ques_economy" value="economy" /> -->
+            {% if category == "care" %}
+            <label class="category_label" style="background-color: #00af41;">Pflege</label><br/>
+            {% else %}
+            <label class="category_label">Pflege</label><br/>
+            {% endif %}
+            {% if category == "technology" %}
+            <label class="category_label" style="background-color: #00af41;">Technik & Infrastruktur</label><br/>
+            {% else %}
+            <label class="category_label">Technik & Infrastruktur</label><br/>
+            {% endif %}
+            {% if category == "embedding" %}
+            <label class="category_label" style="background-color: #00af41;">Institutionelle & gesellschaftliche Einbettung</label><br/>
+            {% else %}
+            <label class="category_label">Institutionelle & gesellschaftliche Einbettung</label><br/>
+            {% endif %}
+            {% if category == "law" %}
+            <label class="category_label" style="background-color: #00af41;">Datenschutz & Recht</label><br/>
+            {% else %}
+            <label class="category_label">Datenschutz & Recht</label><br/>
+            {% endif %}
+            {% if category == "ethics" %}
+            <label class="category_label" style="background-color: #00af41;">Ethik</label><br/>
+            {% else %}
+            <label class="category_label">Ethik</label><br/>
+            {% endif %}
+            {% if category == "economy" %}
+            <label class="category_label" style="background-color: #00af41;">Ökonomie</label><br/>
+            {% else %}
+            <label class="category_label">Ökonomie</label><br/>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

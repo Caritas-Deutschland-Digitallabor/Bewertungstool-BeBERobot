@@ -1,0 +1,111 @@
+{% extends 'polls/base.html' %}
+
+{% block polls_content %}
+
+<div class="logout_sec">
+    <a class="nav-link" href="{% url 'polls:logout_user' %}">LOGOUT</a>
+</div>
+<div class="logout_mess">
+    Klicken Sie hier, um sich von der Sitzung abzumelden, alle eingegebenen Daten werden gespeichert
+</div>
+<br/>
+
+<div class="background"> 
+    <h1 style="text-align:center;">Stammdaten</h1><br />
+
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+    <form action="{% url 'polls:save_setting' %}" method="post">
+        {% csrf_token %}
+
+        <div class="grid-setting">
+            <div class="grid-item_setting settting_item1">
+                <h5>Name der Einrichtung</h5>
+                <div> 
+                    <textarea id="text_company_name" name="text_company_name" placeholder="[Bitte eingeben]" style="height:25px; width:100%; overflow:hidden;" class="textarea_setting"></textarea><br>
+                </div>
+                <h5>Name des robotischen Systems</h5>
+                <p style="font-size: 16px;">Bitte lassen Sie dieses Feld leer, wenn der Workshop sich nicht auf ein konkretes Produkt bezieht</p>
+                <div>
+                    <textarea id="text_robot_name" name="text_robot_name" placeholder="[Bitte eingeben]" style="height:25px; width:100%; overflow:hidden;" class="textarea_setting"></textarea><br>
+                </div>
+            </div>
+
+            <div class="grid-item_setting settting_item2">
+                <h5>„Handlungsfeld“</h5>
+                <div id="div_select_case" > 
+                    <input type="radio" name="choice_setting" id="choice_lang" value="langzeitstationär" />
+                    <label id="label_lang" class="style" >Altenhilfe (stationär) oder Behindertenhilfe (besondere Wohnformen)</label><br />
+                    <input type="radio" name="choice_setting" id="choice_akut" value="akutstationär" />
+                    <label id="label_akut" class="style" >Krankenhaus</label><br />
+                    <input type="radio" name="choice_setting" id="choice_ambulant" value="ambulant" />
+                    <label id="label_ambulant" >Altenhilfe (ambulant) oder Behindertenhilfe (ambulant)</label><br />
+                </div>
+            </div>  
+        </div>
+
+        <div class = white_section_setting>
+            <h5 id="title_set" >Teilnehmende (beteiligte Personengruppen)</h5>
+            <p id="data_protection_set">Auf einen Eintrag der Namen kann aus datenschutzrechtlichen Gründen verzichtet werden. Wird von dem Dienst/ der Einrichtung ein Eintrag gewünscht, ist im Vorfeld eine entsprechende Einverständniserklärung der Personen einzuholen und zu hinterlegen.</p>
+            <div id="div_lang" class="grid_participant">
+
+                <ul>
+                    {% for lang_role in Lang_Roles %}
+                        <div class = "item_participant">
+                            <input name ="teil_lang" type="checkbox" id="{{lang_role.role_id}}" value="{{lang_role.role_id}}"> 
+                            {% if lang_role.mandatory == True %}
+                            <label for="{{lang_role.role_id}}">{{lang_role.role_name}} (erforderlich)</label>
+                            {% else %}
+                            <label for="{{lang_role.role_id}}">{{lang_role.role_name}}</label>
+                            {% endif %}
+                            <textarea id="{{lang_role.role_id}}" name="{{lang_role.role_id}}" placeholder="Name" style="height:25px; float:right" class="textarea_setting"></textarea><br><br>
+                        </div>
+                    {% endfor %}
+                </ul>
+
+            </div>
+            <div id="div_akut" class="grid_participant">
+
+                <ul>
+                    {% for aku_role in Aku_Roles %}
+                        <div class = "item_participant">
+                            <input name ="teil_aku" type="checkbox" id="{{aku_role.role_id}}" value="{{aku_role.role_id}}"> 
+                            {% if aku_role.mandatory == True %}
+                            <label for="{{aku_role.role_id}}">{{aku_role.role_name}} (erforderlich)</label>
+                            {% else %}
+                            <label for="{{aku_role.role_id}}">{{aku_role.role_name}}</label>
+                            {% endif %}
+                            <textarea id="{{aku_role.role_id}}" name="{{aku_role.role_id}}" placeholder="Name" style="height:50px; float:right" class="textarea_setting"></textarea><br><br>
+                        </div>
+                    {% endfor %}
+                </ul>
+
+            </div>
+
+            <div id="div_ambulant" class="grid_participant">
+
+                <ul>
+                    {% for ambu_role in Ambu_Roles %}
+                        <div class = "item_participant">
+                            <input name ="teil_ambu" type="checkbox" id="{{ambu_role.role_id}}" value="{{ambu_role.role_id}}"> 
+                            {% if ambu_role.mandatory == True %}
+                            <label for="{{ambu_role.role_id}}">{{ambu_role.role_name}} (erforderlich)</label>
+                            {% else %}
+                            <label for="{{ambu_role.role_id}}">{{ambu_role.role_name}}</label>
+                            {% endif %}
+                            <textarea id="{{ambu_role.role_id}}" name="{{ambu_role.role_id}}" placeholder="Name" style="height:25px; float:right" class="textarea_setting"></textarea><br><br>
+                        </div>
+                    {% endfor %}
+                </ul>
+
+            </div> 
+        </div>
+        <br/>
+        
+        <input id="next_button_sett" type="submit" value="Weiter" class="button"/>
+
+    </form>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'polls/base.html' %}
+
+{% block polls_content %} <!-- Block for the html logic -->
+
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<div class="background" style="text-align: center;">
+    <form action="{% url 'polls:register'%}" method="POST" >
+        {% csrf_token%}
+
+        <h1 > REGISTRIEREN </h1>
+        <hr />
+        <div class="grid-registration">
+            <div>
+                <label for="username" style="font-size: 20px; text-align: left;">Benutzername</label><br>
+                <input type="textarea" class="textarea_register" name="username" id="username" placeholder="Benutzernamen eingeben" value="{{ username }}"
+                    Required>
+            </div>
+            
+            <div>
+                <label for="lname" style="font-size: 20px;">Name</label><br> 
+                <input type="textarea" class="textarea_register" name="last_name" id="last_name" placeholder="Name eingeben" value="{{ last_name }}"
+                    Required>
+            </div>
+
+            <div>
+                <label for="email" style="font-size: 20px;">E-Mail Adresse</label><br>
+                <input type="email" class="textarea_register" name="email" id="email" placeholder="E-Mail eingeben" value="{{ email }}" Required>
+            </div>
+
+            <div>
+                <label for="password" style="font-size: 20px;">Kennwort</label><br>
+                <input type="password" class="textarea_register" name="password" id="password" placeholder="Kennwort eingeben" value="{{ password }}"
+                    Required><br>
+                <ul class = "small_letter" style="width: 65%; margin-left: -20px;">
+                    <li>Das Kennwort muss mindestens 8 Zeichen umfassen</li>
+                    <li>Das Kennwort muss mindestens einen Großbuchstaben (A-Z), einen Kleinbuchstaben (a-z) und ein Symbol ([](){}|\\`~!@#$%^&*_-+=; :\'",<>./?')
+                        enthalten</li>
+                    <li>Bitte vermeiden Sie banale Kennwörter</li>
+                </ul>
+
+            </div>
+
+            <div>
+                <label for="confirm_password" style="font-size: 20px;">Bestätigen Sie Ihr Kennwort</label><br>
+                <input type="password" class="textarea_register" name="confirm_password" id="confirm_password" value="{{ password }}"
+                    placeholder="Bestätigen Sie Ihr Kennwort" Required>
+            </div>
+        </div>
+        <br /><br />
+        <a class="button_brown" href="{% url 'polls:login_user' %}" role="button">Anmelden</a>
+        <input id="register_button" type="submit" value="Registrieren" class="button"/>
+    </form>
+    
+    <br /><br /><br>
+    <div class="form-group">
+        {% for message in messages %}
+        <div class="alert alert-danger" role="alert">
+            {{message}}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

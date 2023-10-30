@@ -1,0 +1,47 @@
+{% extends 'polls/base.html' %}
+
+{% block polls_content %} <!-- Block for the html logic -->
+<div class="logout_sec">
+    <a class="nav-link" href="{% url 'polls:logout_user' %}">LOGOUT</a>
+</div>
+<div class="logout_mess">
+    Klicken Sie hier, um sich von der Sitzung abzumelden, alle eingegebenen Daten werden gespeichert
+</div>
+<br/>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %} <!-- we can use this simbol (double bracket) to introduce a variable from the python file-->
+
+<div class="background" style="text-align: center;">
+    <h1>Workshop Liste</h1>
+    <br>
+    <form action="{% url 'polls:intro'%}" method="post">
+        {% csrf_token %}
+
+        <div class="grid-workshop">
+            <div style="font-weight: bold;">Name</div>
+            <div style="font-weight: bold;">Datum</div>
+            <div style="font-weight: bold;">Auswahl</div>
+            {% for workshop in WorkshopList %}
+    
+                <div>
+                    <label for="{{workshop.workshop_id}}">{{workshop.workshop_name}}</label>
+                </div>
+                
+                <div>
+                    <label>{{workshop.workshop_date}}</label>
+                </div> 
+
+                <div>
+                    <input type="radio" name="workshop_id" id="{{workshop.workshop_id}}" value="{{workshop.workshop_id}}" />
+                </div>
+            {% endfor %} 
+        </div>
+        
+        <br>
+        <a class="button_brown" href="{% url 'polls:create_workshop' %}" role="button">Neuen Workshop erstellen</a>
+        <input id="delete_button_listWS" type="submit" name="delete_workshop_button" value="Workshop Löschen" class="button_red"/>
+        <input id="next_button_listWS" type="submit" name="intro_workshop" value="Weiter" class="button"/>
+    </form>
+</div>
+
+{% endblock %}

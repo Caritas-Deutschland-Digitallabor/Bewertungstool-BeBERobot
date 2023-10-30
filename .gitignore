@@ -1,0 +1,27 @@
+# Python
+*.pyc
+*.pyo
+db.sqlite3
+backupdb.sqlite
+
+# Django
+/staticfiles_collected/
+/backend/__pycache__
+
+# Divio
+.divio
+/data.tar.gz
+/data
+
+
+# OS-specific patterns - add your own here
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+.idea/
+
+QuickPieChart01000.pdf
+

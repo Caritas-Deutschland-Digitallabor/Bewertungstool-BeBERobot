@@ -1,0 +1,76 @@
+{% extends 'polls/base.html' %}
+
+{% block polls_content %}
+
+
+<div class="logout_sec">
+    <a class="nav-link" href="{% url 'polls:logout_user' %}">LOGOUT</a>
+</div>
+<div class="logout_mess">
+    Klicken Sie hier, um sich von der Sitzung abzumelden, alle eingegebenen Daten werden gespeichert
+</div>
+<br/>
+
+<div class="background"> 
+    <h1 style="text-align:center;">Stammdaten</h1><br />
+
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+    <form action="{% url 'polls:save_setting' %}" method="post">
+        {% csrf_token %}
+
+        <div class="grid-setting">
+            <div class="grid-item_setting settting_item1">
+                <h5>Name der Einrichtung</h5>
+                <div> 
+                    <p>{{setting.company_name}}</p>
+                </div>
+                <h5>Name des robotischen Systems</h5>
+                <div>
+                    <p>{{setting.robot_name}}</p>
+                </div>
+            </div>
+
+            <div class="grid-item_setting settting_item2">
+                <h5>„Handlungsfeld“</h5>
+                    <p>Die gewählte Handlungsfeld lautet <strong>{{setting.setting}}</strong></p>
+            </div>  
+        </div>
+
+        <div class = white_section_setting>
+            <h5 id="title_set" >Teilnehmende (beteiligte Personengruppen)</h5>
+            <div class="grid_participant">
+
+                <ul>
+                    {% for saved_role in Roles_Saved %}
+                        <input name ="teil_role" type="checkbox" id="{{saved_role.role_id}}" value="{{saved_role.role_id}}" checked> 
+                        {% if role.mandatory == True %}
+                        <label for="{{saved_role.role_id}}">{{saved_role.role}} (erforderlich)</label>
+                        {% else %}
+                        <label for="{{saved_role.role_id}}">{{saved_role.role}}</label>
+                        {% endif %}
+                        <textarea id="{{saved_role.role_id}}" name="{{saved_role.role_id}}" placeholder="Name" style="height:25px; float:right" class="textarea_setting">{{saved_role.names}}</textarea><br><br>
+                    {% endfor %}
+
+                    {% for role in Selected_Roles %}
+                        <input name ="teil_role" type="checkbox" id="{{role.role_id}}" value="{{role.role_id}}">
+                        {% if role.mandatory == True %}
+                        <label for="{{role.role_id}}">{{role.role_name}} (erforderlich)</label>
+                        {% else %}
+                        <label for="{{role.role_id}}">{{role.role_name}}</label>
+                        {% endif %}
+                        <textarea id="{{role.role_id}}" name="{{role.role_id}}" placeholder="Name" style="height:25px; float:right" class="textarea_setting"></textarea><br><br>
+                    {% endfor %}
+                    
+                </ul>
+
+            </div>
+        </div>
+        <br/>
+        
+        <input id="next_button_sett" type="submit" value="Weiter" class="button"/>
+
+    </form>
+</div> 
+
+{% endblock %}

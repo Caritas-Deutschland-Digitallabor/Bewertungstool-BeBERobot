@@ -1,0 +1,27 @@
+{% extends 'polls/base.html' %}
+
+{% block polls_content %}
+<div class="logout_sec">
+    <a class="nav-link" href="{% url 'polls:logout_user' %}">LOGOUT</a>
+</div>
+<div class="logout_mess">
+    Klicken Sie hier, um sich von der Sitzung abzumelden, alle eingegebenen Daten werden gespeichert
+</div>
+<br/>
+
+<div class="background" style="text-align: center;">
+    <div class="container p-4">
+	    <h1>Herzlichen Glückwunsch!</h1>
+      <h2>Sie haben's geschafft</h2>
+      <lottie-player src="https://lottie.host/d7055c0c-4a12-4481-b9c0-c2e9d5fceeee/DDOWEGha6e.json" background="#ebfff3" speed="1" style="width:400px; height: 400px; margin: 20px auto 0 auto;" loop autoplay direction="1" mode="normal"></lottie-player>
+		  <hr>
+      <div style="text-align: center; font-size: 20px;">
+        <p>Klicken Sie auf die Button, um eine PDF-Datei mit den Ergebnissen des Workshops herunterzuladen.</p> 
+        <br>                
+        <a class="button" href="{% url 'polls:create_pdf' %}" role="button" style="text-align: center;">PDF herunterladen</a>
+      </div>
+    </div>
+</div>
+
+
+{% endblock %}

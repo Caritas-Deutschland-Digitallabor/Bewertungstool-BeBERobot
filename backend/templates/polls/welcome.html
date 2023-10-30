@@ -1,0 +1,24 @@
+{% extends 'polls/base.html' %}
+{% load cms_tags sekizai_tags static %}
+
+
+{% block polls_content %}
+
+<div class="split-left">
+    <div class="centered-left">
+        <h1>Ready?</h1>
+        <h2>Reflexives Dialoginstrument zu Fragen des Einsatzes robotischer Systeme für die Pflege</h2>
+        <p style="font-size: 20px; padding-top: 20px;">Eine wichtige Strategie zur Bewältigung der demografischen Herausforderungen wird derzeit darin gesehen, pflegebedürftige Menschen und pflegende Angehörige sowie professionelle Pflegepersonen zu Hause, in Pflegeheimen oder Krankenhäusern durch robotische Systeme zu unterstützen. </p>
+        <p style="font-size: 20px;">„READY?“ sensibilisiert Institutionen im Rahmen eines diskursiven Workshops unter Zuhilfenahme dieses digitalen Fragenkatalogs zu Fragen des (potenziellen) Einsatz robotischer Systeme für die Pflege und dient Ihnen als Orientierungshilfe. Das Instrument weist in Form verschiedener Ergebnisdarstellungen auf Handlungsbedarfe hin.</p>
+        <a class="button" href="{% url 'polls:login_user' %}" role="button" style="margin-top: 20px; font-size: 20px;">Anmelden</a>
+    </div>
+</div>
+
+<div class="split-right">
+    <div class="centered-left">
+        <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_1pxqjqps.json"  background="transparent"  speed="1"  style="width: 550px; height: 550px;"  loop  autoplay></lottie-player>
+    </div>
+</div>
+
+
+{% endblock %}

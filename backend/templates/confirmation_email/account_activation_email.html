@@ -1,0 +1,7 @@
+{% autoescape off %}
+Hi {{ user.username }},
+
+Bitte klicken Sie auf den unten stehenden Link, um Ihre Anmeldung zu bestätigen:
+
+http://{{ domain }}{% url 'polls:activate' uidb64=uid token=token %}
+{% endautoescape %}

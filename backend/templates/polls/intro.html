@@ -1,0 +1,105 @@
+{% extends 'polls/base.html' %}
+{% load cms_tags sekizai_tags static %}
+
+{% block polls_content %}
+<div class="logout_sec">
+    <a class="nav-link" href="{% url 'polls:logout_user' %}">LOGOUT</a>
+</div>
+<div class="logout_mess">
+    Klicken Sie hier, um sich von der Sitzung abzumelden, alle eingegebenen Daten werden gespeichert
+</div>
+<br/>
+<div class="background" style="text-align: center;">
+    <div id="intro1" > 
+        <h1>Eckdaten?</h1>
+        <hr>
+        <div class="grid-intro1">
+            <div class="item-intro1">
+                <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_etaum4bz.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px; margin: -50px 0 0 100px;" autoplay></lottie-player>
+            </div>
+            <div class="item-intro1">
+                <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_kujqck0u.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px; margin: -50px 0 0 100px;"    autoplay></lottie-player>
+            </div>
+            <div class="item-intro1">
+                <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_ekfccbba.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px; margin: -50px 0 0 100px;"    autoplay></lottie-player>
+            </div> 
+            <div class="item-intro1">
+                <label style="margin-top: 40px;">4 Stunden</label>
+            </div>
+            <div class="item-intro1">
+                <label style="margin-top: 40px;">Interdisziplinäres Team</label>
+            </div>
+            <div class="item-intro1">
+                <label style="margin-top: 40px;">6 Themenfelder, jeweils 8 Fragestellungen</label>
+            </div>       
+        </div>
+        <br>
+        <button id="button_intro1" type="button" class="button">Weiter</button>
+
+    </div>
+
+    <div id="intro2" > 
+        <h1>Inhalte?</h1>
+        <hr>
+        <div class="grid-intro2a">
+            <div class="item-intro2a">
+                <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_ekfccbba.json"  background="transparent"  speed="1"  style="width: 150px; height: 150px; margin: -20px 0 0 -20px;"    autoplay></lottie-player>
+            </div>
+            <div class="item-intro2a">
+                <label style="margin: 35px 0 0 40px;">6 Themenfelder</label>
+            </div>      
+        </div>
+        <br>
+        <div class="grid-intro2">
+            <div class="item-intro2">Pflege</div>
+            <div class="item-intro2">Ethik</div>
+            <div class="item-intro2">Institutionelle & gesellschaftliche Einbettung</div>
+            <div class="item-intro2">Ökonomie</div>
+            <div class="item-intro2">Technik & Infrastruktur</div>
+            <div class="item-intro2">Datenschutz & Recht</div>
+        </div>
+        <br>
+        <button id="button_intro_back2" type="button" class="button_brown">Zurück</button>
+        <button id="button_intro2" type="button" class="button">Weiter</button>
+    </div>
+
+    <div id="intro3" >
+        <h1>Vorgehen?</h1>
+        <hr>
+        <div class="split-left-intro">
+            <div class="centered-left-intro">
+                <label style="font-size: 30px;"><span class="circle_green" style="width: 50px; height: 50px; "></span>Wir haben keinen Diskussionsbedarf</label><br />
+                <label style="font-size: 30px;" > <span class="circle_yellow" style="width: 50px; height: 50px; "></span>In Bezug auf die Fragestellung geben wir folgenden Hinweis:</label><br />
+                <label style="font-size: 30px;"> <span class="circle_red" style="width: 50px; height: 50px; "></span>In Bezug auf die Fragestellung ist der Einsatz robotischer Systeme nicht möglich, weil… (Folgende Bedingungen müssten für einen Einsatz erfüllt sein…)</label><br />
+                <br>
+                <button id="button_intro_back3" type="button" class="button_brown" style="margin-left:460px;">Zurück</button>
+                <button id="button_intro3" type="button" class="button" style="float: right;">Weiter</button>
+            </div>
+        </div>
+        
+        <div class="split-right-intro">
+            <div class="centered-left-intro">
+                <lottie-player src="https://assets6.lottiefiles.com/temp/lf20_2Mjp2m.json"  background="transparent"  speed="0.75"  style="width: 500px; height: 500px;"    autoplay></lottie-player>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div id="intro4" >
+        <h1>Und im Anschluss?</h1>
+        <hr>
+        <form action="{% url 'polls:setting' %}" method="post">
+            {% csrf_token %}
+            <p style="font-size: 40px;">Ergebnisausgabe/ -reporting</p>
+            <lottie-player src="https://assets4.lottiefiles.com/packages/lf20_tljjahng.json"  background="transparent"  speed="0.5"  style="width: 650px; height: 650px; margin: -100px auto 0 auto;"  loop  autoplay></lottie-player>
+            <button id="button_intro_back4" type="button" class="button_brown">Zurück</button>
+            <input id="next_button_intro" type="submit" value="Weiter" class="button" />
+        </form>
+    </div>
+    
+</div>
+
+
+
+{% endblock %}

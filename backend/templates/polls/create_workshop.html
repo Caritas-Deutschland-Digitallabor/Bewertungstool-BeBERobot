@@ -1,0 +1,37 @@
+{% extends 'polls/base.html' %}
+
+{% block polls_content %} <!-- Block for the html logic -->
+<div class="logout_sec">
+    <a class="nav-link" href="{% url 'polls:logout_user' %}">LOGOUT</a>
+</div>
+<div class="logout_mess">
+    Klicken Sie hier, um sich von der Sitzung abzumelden, alle eingegebenen Daten werden gespeichert
+</div>
+<br/>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %} <!-- we can use this simbol (double bracket) to introduce a variable from the python file-->
+
+<div class="background" style="text-align: center;">
+    <h1>Neuen Workshop erstellen</h1>
+    <br>
+
+    <form action="{% url 'polls:save_workshop' %}" method="post">
+        {% csrf_token %}
+        <div class="grid-create_workshop">
+            <div style="font-weight: bold;">Name des Workshops</div>
+            <div>
+                <textarea id="text_name_workshop" name="text_name_workshop"  placeholder="[Bitte eingeben. z.B.: Titel, Stadt, etc]" class="textarea_question" style="width: 100%;"></textarea>
+            </div>
+            <div style="font-weight: bold;">Datum des Workshops</div>
+            <div style="text-align: left;">
+                <input type="date" id="start" name="date_workshop"  value = "{{today_date}}" min="2022-01-01" max="2023-10-31"> 
+            </div>
+        </div>
+        <br>
+
+        <!--Submit button to get to the next slide-->
+        <input id="next_button_createWS" type="submit" value="Weiter" class="button"/>
+    </form>
+</div>
+
+{% endblock %}

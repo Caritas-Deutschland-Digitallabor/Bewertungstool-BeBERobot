@@ -1,0 +1,555 @@
+@media screen {
+/* ---------------------------------- BACKGROUND -------------------------------------- */
+    .background {
+        background-color: #ebfff3;
+        padding: 20px;
+    }
+
+/* ---------------------------------- BUTTONS ----------------------------------------- */
+
+    /* Green button: mostly for next button */
+    .button {
+        background-color: #00af41; /* Green  #A1D1C6*/
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 18px;
+        border-radius: 8px;
+    }
+
+    .button:hover {
+        background-color: #006b5a; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 18px;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    .button:disabled {
+        background: #999;
+        color: #555;
+        cursor: not-allowed;
+    }
+
+    /* Personalizing the type button */
+    button {
+        cursor: pointer; 
+    }
+
+    button:disabled{
+        cursor: not-allowed;
+    }
+
+    /* Red button: mostly for canceling thing */
+    .button_red {
+        background-color: #d13239;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 18px;
+        border-radius: 8px;
+    }
+
+    .button_red:hover {
+        background-color: #af272d; 
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 18px;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    .button_red:disabled {
+        background: #999;
+        color: #555;
+        cursor: not-allowed;
+    }
+
+    /* Brown button: for things like going back and changing to other pages */
+    .button_brown {
+        background-color: #b6a269;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 18px;
+        border-radius: 8px;
+    }
+
+    .button_brown:hover {
+        background-color: #a08b4e; 
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 18px;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    .button_brown:disabled {
+        background: #999;
+        color: #555;
+        cursor: not-allowed;
+    }
+
+/* ---------------------------------- REGISTRATION.HTML ------------------------------ */
+
+    .grid-registration {
+        display: grid;
+        grid-template-columns: auto;
+        width: 50%;
+        margin: 0 auto;
+
+    }
+
+    .grid-registration > div {
+        text-align: left;
+        padding: 10px;
+        padding-left: 30%;
+        font-size: 30px;
+    }
+
+    .textarea_register{
+        padding: 12px;
+        font-size: 18px;
+        width: 60%;
+        border: 2px solid grey;
+        border-radius: 10px;
+
+    }
+
+
+/* ---------------------------------- LIST_WORKSHOP.HTML ------------------------------ */
+    .grid-workshop {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        gap: 10px;
+        background-color: #ebfff3;
+        padding: 10px;
+    }
+    
+    .grid-workshop > div {
+        background-color: white;
+        text-align: center;
+        padding: 20px 0;
+        font-size: 30px;
+    }
+
+/* ---------------------------------- CREATE WORKSHOP.HTML ---------------------------- */
+    .grid-create_workshop {
+        display: grid;
+        grid-template-columns: 25% 25% ;
+        row-gap: 10px;
+        justify-content: center;
+        background-color: #ebfff3;
+        padding: 10px;
+    }
+
+    .grid-create_workshop > div {
+        background-color: white;
+        text-align: center;
+        padding: 20px ;
+        font-size: 30px;
+    }
+
+/* ---------------------------------- WELCOME PAGE ------------------------------------ */
+    /* Screen split for the welcome page */
+    .split-left {
+        height: 100%;
+        width: 70%;
+        position: fixed;
+        left: 0;
+        z-index: 1;
+        top: 0;
+        overflow-x: hidden;
+        padding-top: 20px;
+    }
+
+    .split-right {
+        height: 100%;
+        width: 30%;
+        position: fixed;
+        right: 0;
+        z-index: 1;
+        top: 0;
+        overflow-x: hidden;
+        padding-top: 20px;
+    }
+
+    .centered-left {
+        position: absolute;
+        top: 50%;
+        left: 35%;
+        transform: translate(-35%, -50%);
+        text-align: left;
+    }
+
+    .centered-right {
+        position: absolute;
+        top: 50%;
+        right: 50%;
+        transform: translate(-50%, -50%);
+        text-align: left;
+    }
+
+    
+
+/* --------------------------------------- INTRO --------------------------------------------- */
+    /* Definition of section in intro page */
+    .section{
+        height: 100%;
+        width: 100%;
+        text-align: left;
+        padding-top: 10px;
+        padding-left: 100px;
+        vertical-align: text-top;
+        font-size: clamp(32px, 4vw, 50px);
+    }
+
+    /* Definition of the grid in the intro page #1 */
+    .grid-intro1 {
+        display: grid;
+        grid-template-columns: 33% 33% 33%;
+        grid-template-rows: 200px 200px;
+        column-gap: 10px;
+        background-color: #A1D1C6;
+        padding: 10px;
+        text-align: center;
+    }
+    .grid-intro1 > div {
+        background-color: white;
+        text-align: center;
+        padding: 60px 0;
+        font-size: 30px;
+        color: black;
+    }
+
+    /* Definition of the grid in the intro page #2 */
+    .grid-intro2a {
+        display: grid;
+        width: 30%;
+        grid-template-columns: 10% 60%;
+        grid-template-rows: 50px 50px;
+        gap: 10px;
+        background-color: white;
+        padding: 10px;
+    }
+    .grid-intro2a > div {
+        background-color: white;
+        text-align: center;
+        font-size: 30px;
+        color: black;
+    }
+
+    /* Definition of the grid in the intro page #2 */
+    .grid-intro2 {
+        display: grid;
+        grid-template-columns: 33% 33% 32.5%;
+        grid-template-rows: 200px 200px;
+        gap: 10px;
+        background-color: white;
+        padding: 10px;
+    }
+    .grid-intro2 > div {
+        background-color: #A1D1C6;
+        text-align: center;
+        padding: 60px 0;
+        font-size: 30px;
+        color: black;
+        font-weight: bold;
+    }
+
+    /* Screen split for the welcome page */
+    .split-left-intro {
+        height: 70%;
+        width: 70%;
+        position: fixed;
+        left: 1%;
+        top: 30%;
+        overflow-x: hidden;
+        padding-top: 20px;
+        background-color: #ebfff3;
+    }
+
+    .split-right-intro {
+        height: 70%;
+        width: 30%;
+        position: fixed;
+        right: 1%;
+        top: 30%;
+        overflow-x: hidden;
+        padding-top: 20px;
+        background-color: #ebfff3;
+    }
+
+    .centered-left-intro {
+        position: absolute;
+        top: 50%;
+        left: 35%;
+        transform: translate(-35%, -50%);
+        text-align: left;
+    }
+
+    .centered-right-intro {
+        position: absolute;
+        top: 50%;
+        right: 50%;
+        transform: translate(-50%, -50%);
+        text-align: left;
+    }
+
+/* ---------------------------------- REGISTER.HTML ---------------------------- */
+    .small_letter {
+        font-size: 10px;
+    }
+
+/* ---------------------------------- SETTING.HTML ----------------------------- */
+    .white_section_setting{
+        background-color: white;
+        padding: 30px;
+        margin-left: 10px;
+    }
+    .grid-setting {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        gap: 10px;
+        background-color: #ebfff3;
+        padding: 10px;
+    }
+  
+    .grid-item_setting {
+        background-color: white;
+        text-align: left;
+        padding: 20px;
+        font-size: 30px;
+    }
+  
+    .settting_item1 {
+        grid-column: 1;
+        grid-row: 1;
+    }
+    
+    .settting_item2 {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .textarea_setting{
+        padding: 12px;
+        font-size: 18px;
+        resize: none;
+        overflow: auto;
+        max-width: 100%;
+        min-width: 50%;
+        min-height: 55px;
+        max-height: 55px;
+        border: 2px solid grey;
+        border-radius: 10px;
+ 
+    }
+
+    #div_select_case{
+        padding: 10px;
+        border: 2px solid grey;
+        border-radius: 10px;
+        font-size: 18px;
+    }
+
+    /* Grid for displaying textarea names align in the same column in the participants section */
+    .grid_participant{
+        display: grid;
+        grid-template-columns:auto auto;
+        gap: 10px;
+        background-color: white;
+        padding: 10px;
+        border: 2px solid grey;
+        border-radius: 10px;
+        font-size: 18px;
+    }
+
+    .item_participant {
+        background-color: white;
+        text-align: left;
+        padding-top: 10px;
+    }
+
+
+/* ---------------------------------- QUESTION.HTML ---------------------------- */
+
+    /* Log out message */
+    .logout_sec{
+        text-align: right;
+    }
+    
+    .logout_mess{
+        text-align: right;
+        display: none;
+    }
+
+    .logout_sec:hover + .logout_mess{
+        text-align: right;
+        display: block;
+    }
+
+
+    /* Categories label */
+    .category_label{
+        border-radius: 10px;
+        background-color: #b6a269;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        width: 300px;
+    }
+    
+    /* Rainbow radio buttons for the question section */
+
+    .circle_green {
+        display: inline-block;
+        width: 13px;
+        height: 13px;
+        background: green;
+        border-radius: 50%;
+        margin-right: 7px;
+    }
+
+    .circle_yellow {
+        display: inline-block;
+        width: 13px;
+        height: 13px;
+        background: orange;
+        border-radius: 50%;
+        margin-right: 7px;
+    }
+
+    .circle_red {
+        display: inline-block;
+        width: 13px;
+        height: 13px;
+        background: red;
+        border-radius: 50%;
+        margin-right: 7px;
+    }
+
+    /* Question section */
+    .div_question_section{
+        background-color: #ebfff3;
+        width: 100%;
+        padding: 20px;
+        border-radius: 50px;
+        box-shadow: -8px 8px 5px grey;
+    }
+    
+    /* Grid in question */
+    .grid_question {
+        display: grid;
+        gap: 10px;
+        background-color: #ebfff3;
+        padding: 10px;
+    }
+
+    .grid-item_question {
+        background-color: white;
+        text-align: left;
+        padding: 20px;
+        font-size: 30px;
+    }
+
+    .question_item1 {
+        grid-column: 1;
+        grid-row: 1 ;
+        margin-right: -10px;
+    }
+
+    .question_item2 {
+        grid-column: 2 / span 3;
+        grid-row:1;
+        margin-right: -10px;
+        text-align: center;
+    }
+
+    .question_item3 {
+        grid-column: 5;
+        grid-row:1;
+    } 
+
+    .question_item4 {
+        grid-column: 1 / span 3;
+        grid-row:2 / span 2;
+        padding-top: 80px;
+    }
+
+    .question_item5 {
+        grid-column: 4;
+        grid-row: 2 ;
+        margin-right: -10px;
+    }
+
+    .question_item6 {
+        grid-column: 5;
+        grid-row: 2 ;
+    }
+
+    .question_item7 {
+        grid-column: 4 / span 2;
+        grid-row:3 ;
+        border-top:none;
+    }
+
+    .textarea_question{
+        background-color: white;
+        padding: 12px;
+        font-size: 18px;
+        resize: both;
+        max-width: 100%;
+        min-width: 35%;
+        min-height: 50px;
+        border: 2px solid grey;
+        border-radius: 10px;
+ 
+    }
+    
+    a.tooltip {
+	position: relative;
+	text-decoration: none;
+	color: blue;
+    }
+
+    a.tooltip span {
+	display: none;
+    }
+
+    a.tooltip:hover span {
+	position: absolute;
+	top: 40px;
+        font-size: 40px;
+	left: 0px;
+	display: block;
+	width: 250px;
+	color: black;
+	background-color: #FFFF40;
+	border: 1px solid black;
+	padding: 5px;
+    }
+
+}

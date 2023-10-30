@@ -1,0 +1,36 @@
+version: '3.5'
+
+services:
+
+  bewertungstool_web:
+    image: bewertungstool_web
+    hostname: bewertungstool_web
+    volumes:
+      - "/your_path/Bewertungstool:/app:rw"
+      - "/your_path/Bewertungstool/data:/data:rw"
+    command:
+      - /bin/sh
+      - -c
+      - |
+        cd /app
+        python manage.py makemigrations
+        python manage.py migrate
+        python manage.py runserver 0.0.0.0:80
+    networks:
+      - internal
+    env_file: /your_path/Bewertungstool/.env-local 
+
+  database_default:
+    image: postgres:9.6-alpine
+    environment:
+      POSTGRES_DB: "db"
+      POSTGRES_PASSWORD: "your password" 
+      POSTGRES_HOST_AUTH_METHOD: "trust"
+      SERVICE_MANAGER: "fsm-postgres"
+    networks:
+      - internal
+    volumes:
+      - "/your_path/Bewertungstool/data/postgres-data:/var/lib/postgresql/data:rw"
+
+networks:
+  internal:
