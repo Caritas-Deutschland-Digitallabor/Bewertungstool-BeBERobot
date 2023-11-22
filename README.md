@@ -4,19 +4,20 @@
 
 ---
 
-Welcome to the Evaluation tool (Bewertungstool) from project [BeBeRobot](https://www.interaktive-technologien.de/projekte/beberobot).
+Welcome to the Evaluation tool (Bewertungstool), developed by the R&D project [BeBeRobot](https://www.interaktive-technologien.de/projekte/beberobot).
 This tool is designed to help organisations inside of a care environment to evaluate and decide if robotic systems can be a good tool for their application. 
-The tool is designed for Linux, we haven't tested in windows, so we cannot guarantee that it would work outside of Linux. 
-The tool offers a web interface and it is designed to be used inside a workshop environment, where the moderator is in charge of controlling the web interface and navigate it.
+The tool offers a Web interface and is designed to run in a Docker container on a Linux host. We have not tested deployment on Windows, which may or may not work.
+The tool is designed to be used as part of an interactive workshop, where the moderator is in charge of controlling the web interface and navigates it.
 
-The tool allows the creation of different users, as well as many workshops as desired for each user. Once the workshop is created, it is possible to select the use case that will be evaluated:
+The tool allows for the creation of different user accounts, and multple workshops for each user. Once the workshop is created, it is possible to select the use case that will be evaluated:
 - Elderly care (inpatient) or care for the disabled (special forms of housing)
 - Hospital
 - Care for the elderly (outpatient) or care for the disabled (outpatient)
 
 For each of these scenarios, we provide a list with all the possible participants and the questions that will make the evaluation possible. 
-The questions are sorted in six categories (care, technology & infrastructure, institutional & social embedding, Privacy & Law, ethics and economy). Each category has a maximum of 8 questions, but it is possible to extend this list. 
-After all the questions are answered, the moderator of the workshop get a PDF Report with the result of the discussion. 
+The questions are sorted in six categories (care, technology & infrastructure, institutional & social embedding, Privacy & Law, ethics and economy). 
+Each category has a maximum of 8 questions, but it is possible to extend this list. 
+After all the questions are answered, the moderator of the workshop receives a PDF Report with the results of the discussion. 
 
 This app was developed based on Django and the Django CMS packages. 
 If you are new to Django, you can get some [information](https://docs.djangoproject.com/en/4.2/) here. 
@@ -25,20 +26,33 @@ If you are new to Django, you can get some [information](https://docs.djangoproj
 
 ---
 
-You need to have docker installed on your system to run this project.
+You need to have Docker installed on your system to run this project.
 - [Install Docker](https://docs.docker.com/engine/install/) here. 
-- If you have not used docker in the past, please read this [introduction on docker](https://docs.docker.com/get-started/) here.
+- If you have not used Docker in the past, please read this [introduction on Docker](https://docs.docker.com/get-started/) here.
 
-Once you have docker installed, you can download and install this repository with:
+Once you have Docker installed, you can download the repository and build the Docker image with:
 ```bash
     git clone https://github.com/BeBeRobot/Bewertungstool.git
     cd Bewertungstool
-    sudo docker build -t bewertungstool_web
-    docker run bewertungstool_web
-
+    docker compose build
 ```
-Once the tool is running, you need to create a shell for creating a superuser and restoring the database. In order to create a shell inside the running virtual machine (docker) run:
-`docker exec -it bewertungstool_web sh`
+
+You should now use a text editor and edit the following two files:
+- docker-compose.yml: Set a (random) database password in the "POSTGRES_PASSWORD" line
+- .env-local: If the web server should be reachable under a certain URL (e.g. www.mytool.org), add this URL to the "DOMAIN_ALIASES" line
+
+Then start the tool using the following command:
+```bash
+    docker compose up
+```
+
+This will start two Docker containers, one for the database and one for the webserver. The call shown above starts in interactive mode. This is recommended for the first start, so that you can see any error that might occur. For production mode, use
+```bash
+    docker compose up -d
+```
+
+Once the tool is running and no more messages are printed to the console, you need to create a shell for creating a superuser and restoring the database. In order to create a shell inside the running virtual machine (docker) run:
+`docker exec -ti bewertungstool-bewertungstool_web-1 bash`
 
 Once you are inside of the shell, you need to create a [superuser](https://docs.djangoproject.com/en/4.2/intro/tutorial02/) to be able to access the djanto admin site, where you will be able to access and manage the database:
 `python manage.py createsuperuser`

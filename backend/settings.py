@@ -105,7 +105,7 @@ INSTALLED_APPS = [
 ]
 
 DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
-DBBACKUP_STORAGE_OPTIONS = {'location': '/your_path/Bewertungstool/backup'}
+DBBACKUP_STORAGE_OPTIONS = {'location': '/app/backup'}
 
 CRISPY_TEMPLATE_PACK = 'uni_form'
 
@@ -170,7 +170,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 # Configure database using DATABASE_URL; fall back to sqlite in memory when no
 # environment variable is available, e.g. during Docker build
-DATABASE_URL = os.environ.get('DATABASE_URL', 'sqlite:////your_path/Bewertungstool/db.sqlite')
+DATABASE_URL = os.environ.get('DATABASE_URL', 'sqlite:////app/db.sqlite')
 DATABASES = {'default': dj_database_url.parse(DATABASE_URL)}
 
 

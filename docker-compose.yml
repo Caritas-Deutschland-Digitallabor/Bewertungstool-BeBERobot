@@ -5,32 +5,36 @@ services:
   bewertungstool_web:
     image: bewertungstool_web
     hostname: bewertungstool_web
+    build: .
+    depends_on:
+      database_default:
+        condition: service_started
     volumes:
-      - "/your_path/Bewertungstool:/app:rw"
-      - "/your_path/Bewertungstool/data:/data:rw"
+      - "./data:/data:rw"
     command:
       - /bin/sh
       - -c
       - |
         cd /app
+        sleep 15
         python manage.py makemigrations
         python manage.py migrate
         python manage.py runserver 0.0.0.0:80
     networks:
       - internal
-    env_file: /your_path/Bewertungstool/.env-local 
+    env_file: ./.env-local 
 
   database_default:
     image: postgres:9.6-alpine
     environment:
       POSTGRES_DB: "db"
-      POSTGRES_PASSWORD: "your password" 
+      POSTGRES_PASSWORD: "your_password" 
       POSTGRES_HOST_AUTH_METHOD: "trust"
       SERVICE_MANAGER: "fsm-postgres"
     networks:
       - internal
     volumes:
-      - "/your_path/Bewertungstool/data/postgres-data:/var/lib/postgresql/data:rw"
+      - "./postgres-data:/var/lib/postgresql/data:rw"
 
 networks:
   internal:
