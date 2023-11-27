@@ -3,7 +3,7 @@ WORKDIR /app
 RUN export DEBIAN_FRONTEND=noninteractive \
  && apt-get update \
  && apt-get upgrade -y \
- && apt-get install -y --fix-missing postgresql-client-13 postgresql-client-common \
+ && apt-get install -y --fix-missing postgresql-client postgresql-client-common \
  && apt-get clean
 COPY ./backend /app/backend
 COPY ./backup /app/backup
